@@ -6,7 +6,7 @@
 * **Root Access**
 * **Kitsune Mask** (Magisk Delta)
 * **ZygiskFrida Module** (To inject the gadget into the process)
-* **Termux**
+* **Termux** install from [fdroid, playstore one will not do](https://f-droid.org/en/packages/com.termux/)
 * **3 Brain Cells** (Minimum requirement)
 
 ---
