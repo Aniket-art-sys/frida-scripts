@@ -1,7 +1,7 @@
 
 ---
 
-## Android Requirements
+## Android Requirements ( NOTE: if you have a pc/ are playing on pc skip to part 4 )
 
 * **Root Access**
 * **Kitsune Mask** (Magisk Delta)
