@@ -1,28 +1,12 @@
-Here is the complete `README.md` file content in a single block.
+Android Requirements:
+root
+kitsune mask
+zgiskfrida
+termux
+3 brain cells.
 
-```markdown
-# Mech Legion (com.plarium.mechlegion) Modding Setup
-
-A complete guide to setting up a Frida/TypeScript development environment on Android using **Termux**, **Ubuntu (PRoot)**, and **Zygisk-Frida**.
-
----
-
-## 📱 Android Requirements
-* **Root Access**
-* **Kitsune Mask** (Magisk Delta)
-* **ZygiskFrida Module** (For Gadget injection)
-* **Termux**
-* **3 Brain Cells** (Essential)
-
----
-
-## ⚙️ Phase 1: Zygisk-Frida Configuration
-Configure the Zygisk-Frida gadget to target the game. Use a file explorer with root access (like MT Manager or MiXplorer).
-
-1. **Path:** `/data/local/tmp/re.zyg.fri/`
-2. **File:** `config.json`
-3. **Content:**
-```json
+after u have met the above go to /data/local/tmp/re.zyg.fri/
+set config.json to
 {
     "targets": [
         {
@@ -47,83 +31,36 @@ Configure the Zygisk-Frida gadget to target the game. Use a file explorer with r
     ]
 }
 
-```
-
----
-
-## 🛠️ Phase 2: Termux & Ubuntu Environment
-
-### 1. Install Ubuntu PRoot
-
-Open Termux and run:
-
-```bash
-apt update && apt upgrade -y
-apt install proot-distro -y
-proot-distro install ubuntu
+Open termux enter
+this is just the terminal of my termux in my phone (same as you termux)
+apt update && apt upgrade put y on eveything
+apt install proot-distro
 proot-distro login ubuntu
-
-```
-
-### 2. Setup Python Environment (Inside Ubuntu)
-
-Install build dependencies first:
-
-```bash
-apt update && apt upgrade -y
-apt install build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl git libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget -y
-
-# Install pyenv
-curl [https://pyenv.run](https://pyenv.run) | bash
-
-```
-
-Add the following to your `~/.bashrc`:
-
-```bash
+apt update && apt upgrade
+apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl git \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+curl https://pyenv.run | bash
+nano ~/.bashrc
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-```
-
-Apply changes: `source ~/.bashrc`
-
-### 3. Build Python 3.9 (Optimized for Speed)
-
-To avoid slow downloads and build errors:
-
-```bash
+source ~/.bashrc
+pyenv -v
+pyenv install 3.9
+pyenv global 3.9
 mkdir -p ~/.pyenv/cache
-wget -4 -O ~/.pyenv/cache/Python-3.9.25.tar.xz [https://www.python.org/ftp/python/3.9.25/Python-3.9.25.tar.xz](https://www.python.org/ftp/python/3.9.25/Python-3.9.25.tar.xz)
+wget -4 -O ~/.pyenv/cache/Python-3.9.25.tar.xz https://www.python.org/ftp/python/3.9.25/Python-3.9.25.tar.xz
 pyenv install 3.9.25
-pyenv global 3.9.25
-
-```
-
----
-
-## 🧪 Phase 3: Frida & Il2Cpp Bridge Setup
-
-Setup the workspace for TypeScript-based hooking.
-
-```bash
-# Install tools
+pyenv global 3.9
+mkdir frida
+cd frida/
 pip install frida-tools
-apt install nodejs npm -y
-
-# Create project
-mkdir frida && cd frida
+apt install nodejs npm
 npm i frida-il2cpp-bridge
-
-```
-
-### Create `package.json`
-
-`nano package.json` and paste:
-
-```json
+rm package.json
+nano package.json (ctrl + s, save) ( ctrl + x, exit)
 {
   "main": "index.ts",
   "scripts": {
@@ -134,29 +71,8 @@ npm i frida-il2cpp-bridge
     "frida-il2cpp-bridge": "^0.9.1"
   }
 }
-
-```
-
-### Create `index.ts`
-
-`nano index.ts` and paste your Il2Cpp scripts.
-
----
-
-## 🚀 Execution
-
-1. Launch **Mech Legion**.
-2. Wait until you are in the **Hangar**.
-3. Wait approximately **10 seconds** for the Zygisk-Frida delay to settle.
-4. Run the following command in your Ubuntu terminal:
-
-```bash
+nano index.ts
+pate index.ts
+after u have entered the game and hangar is open, wait like 10 second then run this command in temrux
 frida -h 127.0.0.1 -n Gadget -l index.ts
-
-```
-
-**ENJOY!**
-
-```
-
-```
+ENJOY!
