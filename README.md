@@ -228,12 +228,12 @@ open task manager, copy the name of your game ( right click -> properties -> nam
 In the VS Code terminal, run:
 ```powershell
 
-frida -n Taskmgr.exe -l index.js
+frida -n gameproccessname -l index.js
 
 ```
 
 
-*(Note: We use `hook.js` here because Windows needs the compiled file).*
+
 
 **ENJOY!**
 any doubts msg me on discord user: p20192728
